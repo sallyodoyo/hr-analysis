@@ -120,10 +120,16 @@
     }
     .project-embed {
       width: 100%;
-      aspect-ratio: 16/9;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .project-embed iframe {
+      width: 100%;
+      height: 600px;
       border: none;
       display: block;
-      background: #eee;
+      border-radius: 12px;
     }
     .project-embed-placeholder {
       width: 100%;
@@ -333,15 +339,11 @@
       <div class="project-embed">
         <iframe 
           title="HR Analysis - Kaggle"
-          width="100%" 
-          height="500" 
           src="https://app.powerbi.com/view?r=eyJrIjoiYWVlYTBjODYtMTcwNi00N2JlLThiYzQtYTAzYWQ3N2Q3ODM5IiwidCI6ImE0NjIyOWM3LTIxZDEtNDE3ZC1hMWNiLTE4NTdhMDdkMjc2NSIsImMiOjh9"
           frameborder="0" 
           allowFullScreen="true">
         </iframe>
-      </div>
-
-      
+      </div>   
       
 
       <div class="project-body">
