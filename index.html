@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sally · Data Analyst Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f0;
+      --surface: #ffffff;
+      --border: rgba(0,0,0,0.08);
+      --text: #1a1a18;
+      --muted: #6b6b66;
+      --accent: #1D9E75;
+      --accent-light: #E1F5EE;
+      --accent-dark: #085041;
+      --tag-bg: #eeedfe;
+      --tag-text: #3C3489;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,245,240,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--muted); }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 14px;
+      border-radius: 20px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+    }
+    .tag.green { background: var(--accent-light); color: var(--accent-dark); }
+
+    /* ── SECTION ── */
+    section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1rem 2rem 4rem;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── PROJECT CARD ── */
+    .project-card {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .project-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      display: block;
+      background: #eee;
+    }
+    .project-embed-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #E1F5EE 0%, #9FE1CB 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .embed-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .embed-icon svg { width: 24px; height: 24px; fill: white; }
+    .embed-hint { font-size: 0.8rem; color: var(--accent-dark); }
+    .project-body { padding: 2rem; }
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .project-date { font-size: 0.8rem; color: var(--muted); white-space: nowrap; padding-top: 6px; }
+    .project-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.75rem; }
+
+    /* ── INSIGHTS GRID ── */
+    .insights-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin-bottom: 1.75rem;
+    }
+    .insight-card {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+    }
+    .insight-card.wide { grid-column: span 2; }
+    .insight-num {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .insight-num.sm { font-size: 1rem; margin-bottom: 6px; }
+    .insight-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── TOOLS ── */
+    .tools-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.75rem; }
+    .tool-tag {
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    /* ── PROCESS ── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
+      margin-top: 0.75rem;
+    }
+    .process-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 0.75rem;
+      background: var(--bg);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── ABOUT / SKILLS ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; } .insight-card.wide { grid-column: span 1; } }
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+    .about-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+    .about-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+    .skills-list { display: flex; flex-direction: column; gap: 10px; }
+    .skill-row { display: flex; align-items: center; gap: 10px; }
+    .skill-name { font-size: 0.8rem; color: var(--muted); width: 130px; flex-shrink: 0; }
+    .skill-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: var(--bg);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 10px;
+      animation: grow .8s ease forwards;
+      transform-origin: left;
+    }
+    @keyframes grow { from { width: 0; } }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp .6s ease forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .2s; }
+    .delay-3 { animation-delay: .3s; }
+    .delay-4 { animation-delay: .4s; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="#">Sally · Portfolio</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow fade-in">Data Analyst · Power BI · Azure</p>
+    <h1 class="fade-in delay-1">Turning data<br>into <em>decisions.</em></h1>
+    <p class="hero-desc fade-in delay-2">
+      I build analytical dashboards and data models that translate complex workforce and business data into clear, actionable insight for both technical teams and executive stakeholders.
+    </p>
+    <div class="hero-tags fade-in delay-3">
+      <span class="tag">Power BI</span>
+      <span class="tag">DAX</span>
+      <span class="tag green">PL-300 Certified</span>
+      <span class="tag">Power Query</span>
+      <span class="tag">Azure</span>
+      <span class="tag">Data Modelling</span>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Featured project</p>
+
+    <div class="project-card fade-in delay-2">
+
+      <!-- EMBED — replace the div below with your actual Power BI iframe -->
+      <div class="project-embed-placeholder">
+        <div class="embed-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h4v4H7V7zm0 6h10v2H7v-2zm0 4h6v2H7v-2zm6-10h4v4h-4V7z"/></svg>
+        </div>
+        <p class="embed-hint">Paste your Power BI embed iframe here</p>
+      </div>
+
+      
+      <iframe title="HR Analysis - Kaggle" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiYWVlYTBjODYtMTcwNi00N2JlLThiYzQtYTAzYWQ3N2Q3ODM5IiwidCI6ImE0NjIyOWM3LTIxZDEtNDE3ZC1hMWNiLTE4NTdhMDdkMjc2NSIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+      
+
+      <div class="project-body">
+        <div class="project-header">
+          <h2 class="project-title">HR Analytics Dashboard</h2>
+          <span class="project-date">2025 · Power BI</span>
+        </div>
+
+        <p class="project-desc">
+          A Four-page workforce intelligence dashboard built on the Kaggle IBM HR Analytics dataset. Covers an overview, attrition analysis, hiring trends, and salary compensation — designed to surface actionable insight for HR leadership and non-technical decision-makers.
+        </p>
+
+        <p class="insights-label">Key findings</p>
+        <div class="insights-grid">
+          <div class="insight-card">
+            <div class="insight-num">17%</div>
+            <div class="insight-desc">Attrition rate among junior employees — highest across all job levels</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-num">78.99%</div>
+            <div class="insight-desc">Of inactive juniors resigned voluntarily; remainder were terminated</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-num">21.64%</div>
+            <div class="insight-desc">Of inactive juniors resigned within their first year of tenure</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-num">132,895</div>
+            <div class="insight-desc">Active employees in 2025 — peak headcount across the dataset</div>
+          </div>
+          <div class="insight-card wide">
+            <div class="insight-num sm">Compensation scales with tenure &amp; level</div>
+            <div class="insight-desc">Average salary increases consistently with both years of service and job grade, confirming a structured compensation framework across the organisation.</div>
+          </div>
+        </div>
+
+        <p class="insights-label">Tools &amp; techniques</p>
+        <div class="tools-row">
+          <span class="tool-tag">Power BI Desktop</span>
+          <span class="tool-tag">DAX measures</span>
+          <span class="tool-tag">Power Query (M)</span>
+          <span class="tool-tag">Custom Date Table</span>
+          <span class="tool-tag">USERELATIONSHIP()</span>
+          <span class="tool-tag">Drill-through</span>
+          <span class="tool-tag">Scatter chart</span>
+          <span class="tool-tag">Edit Interactions</span>
+        </div>
+
+        <p class="insights-label">Analytical workflow</p>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-text">Data ingestion &amp; cleaning in Power Query</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-text">Relational data modelling &amp; Date Table</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-text">Custom DAX measures for KPIs</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-text">Multi-page visual design &amp; UX</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">5</div>
+            <div class="step-text">Stakeholder-ready narrative &amp; drill-through</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About me</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Background</h3>
+        <p>
+          Computer Science graduate with a Microsoft Power BI Data Analyst Associate certification (PL-300). I specialise in translating messy datasets into clean, interactive dashboards that help organisations make faster, better-informed decisions.
+        </p>
+        <br>
+        <p>
+          Interested in roles at the intersection of data, storytelling, and strategy — particularly in frontier and emerging markets contexts.
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>Technical skills</h3>
+        <div class="skills-list">
+          <div class="skill-row">
+            <span class="skill-name">Power BI / DAX</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:92%"></div></div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Power Query (M)</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Data modelling</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Microsoft Azure</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:70%"></div></div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">SQL</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:65%"></div></div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Python</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:55%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Built with HTML &amp; CSS · Hosted on GitHub Pages
+  </footer>
+
+</body>
+</html>
